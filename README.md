@@ -16,6 +16,7 @@
 * [Overview :eye:](#overview-eye)
   * [About](#about)
   * [Technologies](#technologies)
+  * [Technologies](#technologies)
   * [Features](#features)
   * [Setup](#setup)
   * [How to use](#how-to-use)
@@ -39,27 +40,40 @@ This project creates solvable equation and presents it in the form of matches on
 ----------------------------------
 
 ### Technologies
+- [Arduino Yún](https://docs.arduino.cc/retired/boards/arduino-yun/)
+
 Languages:
-- Arduino C++
+- [Arduino C++](https://docs.arduino.cc/language-reference/)
 - C
 - JS
 - Prolog
   
 Programs:
 - [Wokwi - Arduino Uno simulator](https://wokwi.com/projects/new/arduino-uno)
+- [Arduino IDE](https://www.arduino.cc/en/software)
 - [Dev-C++](https://www.bloodshed.net)
 - [VSCode](https://code.visualstudio.com)
   
 ----------------------------------
 
 ### Features
-- Generator of incorrect equations composed of correct numbers that can be corrected with one move of a match
+- Binary representation of numbers (0–9) and operators (+-) are equivalent in a seven-segment display format, mimicking matchstick arrangements.
+- Simulation of matchstick movement by adding, removing, or repositioning segments.
+- Real-time feedback on valid and invalid moves.
+- Dynamic equation generator:
+  - Random values and modifications for ensuring replayability.
+  - Generating valid mathematical equation.
+  - Modifiying operands, operators, and results by manipulating matchsticks to create broken mathematical equations.
+  - Ensuring the equation is composed of correct numbers and operator and can be corrected with one move of a match.
 - Arduino version:
-  - Displaying equations on the MAX7219 32×8 LED Matrix
-  - Interactive selection of matches to select and place using buttons
+  - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
+  - Blinking animation effect for highlighting matchstick manipulation.
+  - Interactive control using buttons.
+  - Preventing of taking a matchstick from an empty position or placing one into an already-occupied spot.
 - Console version:
-  - Displaying equations on the console
-  - Selecting matches by inputing column and place
+  - Visual representation of the equations on the console.
+  - Dividing equation into columns (A-D) and segments (1-7).
+  - Control using input values (column and segment eg. B1 D7).
 
 <br>
 
