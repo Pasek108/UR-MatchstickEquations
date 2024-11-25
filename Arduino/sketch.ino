@@ -4,11 +4,11 @@
 /* ---------------- BOARD ELEMENTS ---------------- */
 
 // MAX7219 LED display
-#define CS_PIN 10
-#define DATA_PIN 11
-#define CLK_PIN 13
+#define CS_PIN 11
+#define DATA_PIN 10
+#define CLK_PIN 9
 #define MAX_DEVICES 4
-#define HARDWARE_TYPE MD_MAX72XX::PAROLA_HW
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW
 
 MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
@@ -24,15 +24,15 @@ Bounce  COL_3_BUTTON_debouncer = Bounce();
 Bounce  COL_4_BUTTON_debouncer = Bounce();
 
 // Cancel and Confirm buttons
-#define CANCEL_BUTTON_PIN 7
+#define CANCEL_BUTTON_PIN 8
 #define CONFIRM_BUTTON_PIN 6
 
 Bounce CANCEL_BUTTON_debouncer = Bounce();
 Bounce CONFIRM_BUTTON_debouncer = Bounce();
 
 // Wrong and Correct LEDs
-#define WRONG_LED_PIN 9
-#define CORRECT_LED_PIN 8
+#define WRONG_LED_PIN 13
+#define CORRECT_LED_PIN 12
 
 
 /* ---------------- FUNCTIONS ---------------- */
@@ -111,7 +111,7 @@ byte picked_column = 0;
 byte picked_match = 0;
 
 bool display_ticked = false;
-word last_tick_time = 0;
+unsigned long last_tick_time = 0;
 
 
 /* ---------------- MAIN FUNCTIONS ---------------- */
@@ -155,6 +155,8 @@ void setup() {
   pinMode(WRONG_LED_PIN, OUTPUT);
   pinMode(CORRECT_LED_PIN, OUTPUT);
 
+  startNewGame();
+  mx.clear();
   printEquation(plus_operator);
 }
 
@@ -237,7 +239,7 @@ void selectMatchPlace(byte column) {
 
   if (selected_column == column) {
     if (selected_column != 2) selected_match = getNextPlace();
-    else selected_match = 1;
+    else selected_match = (byte)((!picked_match) ? plus_operator : !plus_operator);
   } else {
     selectColumn(column);
     selectMatchPlace(column);
@@ -422,7 +424,7 @@ bool breakEquation(byte *equation) {
   byte a  = equation[0];
   byte b  = equation[2];
   byte c  = equation[3];
-  char op = equation[1];
+  byte op = equation[1];
 
   byte broken_equations[25][4];
   byte equations_counter = 0;
@@ -690,7 +692,7 @@ void printOperator(byte *blink) {
   bool is_on = blink[1];
 
   for (byte i = 0; i < 5; i++) {
-    mx.setPoint(OPERATOR_POS_Y + i, OPERATOR_POS_X + 2, (match) ? is_on : true);
+    mx.setPoint(OPERATOR_POS_Y + i, OPERATOR_POS_X + 2, (match) ? is_on : plus_operator);
     mx.setPoint(OPERATOR_POS_Y + 2, OPERATOR_POS_X + i, true);
   }
 
