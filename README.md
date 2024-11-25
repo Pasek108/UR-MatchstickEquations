@@ -55,6 +55,14 @@ This project creates solvable equation and presents it in the form of matches on
   - Dividing the equation into columns (A-D) and segments (1-7).
   - Control using input values (e.g., column and segment, like B1 D7).
 
+<br>
+
+> [!NOTE]  
+> Room for improvements:
+> - Moving more than one matchstick
+> - Adding 2nd display and using 2-digit numbers
+> - Multiplication and divide operators (X and /)
+
 ## Technologies
 - [Arduino Yún](https://docs.arduino.cc/retired/boards/arduino-yun/)
 
@@ -79,14 +87,6 @@ Programs:
 - 1x Green LED 5mm
 - 2x 220 Ohm Resistor
 - 22x Jumper wires
-
-<br>
-
-> [!NOTE]  
-> Room for improvements:
-> - Moving more than one matchstick
-> - Adding 2nd display and using 2-digit numbers
-> - Multiplication and divide operators (X and /)
 
 ## Setup
 Download this repo and:
