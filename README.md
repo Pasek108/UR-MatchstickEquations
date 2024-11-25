@@ -21,6 +21,8 @@
   * [Setup](#setup)
 * [Details :scroll:](#details-scroll)
   * [User interface](#user-interface)
+  * [Matchstick representation](#matchstick-representation)
+  * [Equation generator](#equation-generator)
   * [Project structure](#project-structure)
 
 <br>
@@ -116,11 +118,81 @@ Download this repo and:
 # Details :scroll:
 
 ## User interface
-### Solver
+### Console version
 ![main screen](/_for_readme/UI/main_screen.png)
 
 Creating a query manually is a time-consuming task that requires knowledge of SPARQL and ensuring accuracy. 
 Therefore, a query generator was prepared, allowing queries to be generated based on data copied from the Loldle website.
+
+
+## Matchstick representation
+Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
+```                     
+   _______                                
+  |   1   |        This bits:            |       |
+6 |       | 2      7 6 5 4 3 2 1       6 |       | 2
+  |_______|        1 1 0 0 1 1 0         |_______|
+  |   7   |                                  7   |
+5 |       | 3      Are equivalent of             | 3
+  |_______|        number 4 because:             |
+      4
+```
+
+A matchstick can be checked or added using AND and removed using OR operations with the appropriate bit, for example:
+```
+Checking if bit is set (match is in position):
+      7 6 5 4 3 2 1 
+      0 0 0 0 1 1 1  = 7 
+AND   0 0 0 0 0 1 0 
+      0 0 0 0 0 1 0  <- matchstick in the number 7 is at position 2
+                ^ 
+```
+```
+Setting bit to 0 (taking a match):
+      7 6 5 4 3 2 1 
+      1 0 1 1 0 1 1  = 2 
+AND   1 1 0 1 1 1 1 
+      1 0 0 1 0 1 1  <- matchstick removed from position 5 
+          ^      
+```
+```
+Setting bit to 1 (putting a match): 
+      7 6 5 4 3 2 1 
+      1 0 1 1 0 1 1  = 2 (without the matchstick in segment 5) 
+OR    0 0 0 0 1 0 0 
+      1 0 0 1 1 1 1  <- matchstick inserted at position 3 
+              ^
+```
+
+Operator in the equation is represented in two ways: 
+- For the console version it is an 8th bit of the number making them a sign-magnitude notation.  
+- For the Arduino version it is boolean variable so the numbers are equivalent of 7 bit numbers.
+```
+239, // -9 = 11101111 = 239    -----|
+255, // -8 = 11111111 = 255         |
+135, // -7 = 10000111 = 135         |
+253, // -6 = 11111101 = 253         |
+237, // -5 = 11101101 = 237         |--- binary equivalents of numbers  
+230, // -4 = 11100110 = 230         |--- only for console version 
+207, // -3 = 11001111 = 207         |
+219, // -2 = 11011011 = 219         |
+134, // -1 = 10000110 = 134         |
+191, // -0 = 10111111 = 191    -----|
+
+63,  //  0 = 00111111 = 63
+6,   //  1 = 00000110 = 6
+91,  //  2 = 01011011 = 91
+79,  //  3 = 01001111 = 79
+102, //  4 = 01100110 = 102
+109, //  5 = 01101101 = 109
+125, //  6 = 01111101 = 125
+7,   //  7 = 00000111 = 7
+127, //  8 = 01111111 = 127
+111, //  9 = 01101111 = 111
+```
+
+## Equation generator
+
 
 ## Project structure
 The project directory tree looks like this:
