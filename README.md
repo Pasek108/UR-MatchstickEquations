@@ -57,23 +57,23 @@ Programs:
 ----------------------------------
 
 ### Features
-- Binary representation of numbers (0–9) and operators (+-) are equivalent in a seven-segment display format, mimicking matchstick arrangements.
+- Binary representation of numbers (0–9) and operators (+-) matches a seven-segment display, mimicking matchstick arrangements.
 - Simulation of matchstick movement by adding, removing, or repositioning segments.
 - Real-time feedback on valid and invalid moves.
 - Dynamic equation generator:
-  - Random values and modifications for ensuring replayability.
+  - Random values and modifications ensure replayability.
   - Generating valid mathematical equation.
-  - Modifiying operands, operators, and results by manipulating matchsticks to create broken mathematical equations.
-  - Ensuring the equation is composed of correct numbers and operator and can be corrected with one move of a match.
+  - Modifiying equation by manipulating matchsticks to create broken mathematical equations.
+  - Ensuring the equation has correct numbers and operators, which can be fixed with one move.
 - Arduino version:
   - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
   - Blinking animation effect for highlighting matchstick manipulation.
   - Interactive control using buttons.
-  - Preventing of taking a matchstick from an empty position or placing one into an already-occupied spot.
+  - Preventing removing a matchstick from an empty position or placing it in an occupied spot.
 - Console version:
   - Visual representation of the equations on the console.
-  - Dividing equation into columns (A-D) and segments (1-7).
-  - Control using input values (column and segment eg. B1 D7).
+  - Dividing the equation into columns (A-D) and segments (1-7).
+  - Control using input values (e.g., column and segment, like B1 D7).
 
 <br>
 
