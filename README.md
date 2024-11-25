@@ -15,9 +15,9 @@
 # Table of Contents
 * [Overview :sparkles:](#overview-sparkles)
   * [About](#about)
+  * [Features](#features)
   * [Technologies](#technologies)
   * [Elements](#elements)
-  * [Features](#features)
   * [Setup](#setup)
 * [Details :scroll:](#details-scroll)
   * [User interface](#user-interface)
@@ -35,6 +35,25 @@ This project creates solvable equation and presents it in the form of matches on
 <br>
 
 ![preview](/_for_readme/preview.png)
+
+## Features
+- Binary representation of numbers (0–9) and operators (+-) matches a seven-segment display, mimicking matchstick arrangements.
+- Simulation of matchstick movement by adding, removing, or repositioning segments.
+- Real-time feedback on valid and invalid moves.
+- Dynamic equation generator:
+  - Random values and modifications ensure replayability.
+  - Generating valid mathematical equation.
+  - Modifiying equation by manipulating matchsticks to create broken mathematical equations.
+  - Ensuring the equation has correct numbers and operators, which can be fixed with one move.
+- Arduino version:
+  - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
+  - Blinking animation effect for highlighting matchstick manipulation.
+  - Interactive control using buttons.
+  - Preventing removing a matchstick from an empty position or placing it in an occupied spot.
+- Console version:
+  - Visual representation of the equations on the console.
+  - Dividing the equation into columns (A-D) and segments (1-7).
+  - Control using input values (e.g., column and segment, like B1 D7).
 
 ## Technologies
 - [Arduino Yún](https://docs.arduino.cc/retired/boards/arduino-yun/)
@@ -60,25 +79,6 @@ Programs:
 - 1x Green LED 5mm
 - 2x 220 Ohm Resistor
 - 22x Jumper wires
-
-## Features
-- Binary representation of numbers (0–9) and operators (+-) matches a seven-segment display, mimicking matchstick arrangements.
-- Simulation of matchstick movement by adding, removing, or repositioning segments.
-- Real-time feedback on valid and invalid moves.
-- Dynamic equation generator:
-  - Random values and modifications ensure replayability.
-  - Generating valid mathematical equation.
-  - Modifiying equation by manipulating matchsticks to create broken mathematical equations.
-  - Ensuring the equation has correct numbers and operators, which can be fixed with one move.
-- Arduino version:
-  - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
-  - Blinking animation effect for highlighting matchstick manipulation.
-  - Interactive control using buttons.
-  - Preventing removing a matchstick from an empty position or placing it in an occupied spot.
-- Console version:
-  - Visual representation of the equations on the console.
-  - Dividing the equation into columns (A-D) and segments (1-7).
-  - Control using input values (e.g., column and segment, like B1 D7).
 
 <br>
 
