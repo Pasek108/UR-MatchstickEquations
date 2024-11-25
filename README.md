@@ -20,7 +20,6 @@
   * [Features](#features)
   * [Setup](#setup)
 * [Details :scroll:](#details-scroll)
-
   * [User interface](#user-interface)
   * [Project structure](#project-structure)
 
@@ -112,11 +111,9 @@ Download this repo and:
   - Connect the Arduino to your computer
   - Upload a sketch
 
-<br>
+<br> 
 
 # Details :scroll:
-
-
 
 ## User interface
 ### Solver
