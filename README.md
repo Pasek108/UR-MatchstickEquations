@@ -12,34 +12,32 @@
 
 <br>
 
-## Table of Contents
-* [Overview :eye:](#overview-eye)
+# Table of Contents
+* [Overview :sparkles:](#overview-sparkles)
   * [About](#about)
   * [Technologies](#technologies)
-  * [Technologies](#technologies)
+  * [Elements](#elements)
   * [Features](#features)
   * [Setup](#setup)
-  * [How to use](#how-to-use)
 * [Details :scroll:](#details-scroll)
+
   * [User interface](#user-interface)
   * [Project structure](#project-structure)
 
 <br>
 
-## Overview :eye:
+# Overview :sparkles:
 
-### About
+## About
 The project involved creating an Arduino circuit on a breadboard and a program that uses the created circuit in a sensible way.
 
-This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Matrix. The player must move one match to correct the equation.
+This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Matrix display. The player must move one match to correct the equation.
 
 <br>
 
 ![preview](/_for_readme/preview.png)
 
-----------------------------------
-
-### Technologies
+## Technologies
 - [Arduino Yún](https://docs.arduino.cc/retired/boards/arduino-yun/)
 
 Languages:
@@ -53,10 +51,18 @@ Programs:
 - [Arduino IDE](https://www.arduino.cc/en/software)
 - [Dev-C++](https://www.bloodshed.net)
 - [VSCode](https://code.visualstudio.com)
-  
-----------------------------------
 
-### Features
+## Elements
+- 1x Arduino Yún
+- 1x MAX7219 32×8 LED Matrix display
+- 1x Half-Size Breadboard
+- 6x Microswitch 6x6mm 2 pin
+- 1x Red LED 5mm
+- 1x Green LED 5mm
+- 2x 220 Ohm Resistor
+- 22x Jumper wires
+
+## Features
 - Binary representation of numbers (0–9) and operators (+-) matches a seven-segment display, mimicking matchstick arrangements.
 - Simulation of matchstick movement by adding, removing, or repositioning segments.
 - Real-time feedback on valid and invalid moves.
@@ -83,93 +89,43 @@ Programs:
 > - Adding 2nd display and using 2-digit numbers
 > - Multiplication and divide operators (X and /)
 
-----------------------------------
+## Setup
+Download this repo and:
 
-### Setup
-- Download this repo
-- Download [FluentEditor](https://www.cognitum.eu/semantics/fluenteditor/)
-- Start live server ([VSCode LiveServer Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), [Prepros](https://prepros.io/) etc.)
-- Open *Ontology.encnl* file
-- Update champions data (see [Updating data](#updating-data))
+#### Console version
+- To run the program run console.exe file
+- To edit the program:
+  - Edit console.c file using any editor or IDE
+  - Compile and run using gcc or IDE
 
-----------------------------------
+#### Arduino version
+- To run and edit the program in WOKWI simualtor:
+  - Copy sketch.ino, diagram.json files to WOKWI
+  - Add libraries.txt file or libraries from this file to WOKWI
+  - Start simulation
 
-### How to use
-
-#### Finding solution
-
-1. Input your guess/es on Loldle
-2. Copy your guessed champion/s data
-3. Paste it to "Guessed champions data" textbox
-4. Click "Add champions" button
-5. Mark your data as it is marked in Loldle (see images below)
-6. Click "Generate SPQRQL" button
-7. Copy generated query
-8. Paste copied query in Fluent Editor SPARQL tab (last one in the bottom)
-9. Execute query using "Execute" button
-10. Enter the name of the first character from the list into the Loldle game
-11. If guess wasn't correct, go back to step 2
-
-<br>
-<img alt="loldle guesses" src="/_for_readme/Details/loldle_guesses.png" width="500px">
-<img alt="marked champions" src="/_for_readme/Details/marked_champions.png" width="500px">
-
-For more data check [Middle column](#middle-column) section
-
-
-#### Updating data 
-
-Method 1:
-1. Copy new or updated champion data
-2. Add new champion name to *data/champions.txt* file
-3. Add new or replace champion data in *data/champions_data.txt* file
-4. Click "Generate all champions"
-5. Replace all data in *Ontology.encnl* file
-
-Method 2:
-1. Copy new or updated champion data
-3. Input champion name in "champion name" input
-4. Input champion data in "champion data" textbox
-5. Click "Generate champion"
-6. Add new or replace existing champion data in *Ontology.encnl* file
-7. Manually add new individuals of new champion if they not exist 
+- To run and edit the program on real Arduino:
+  - Recreate program circuit
+  - Open sketch.ino file in Arduino IDE
+  - Install libraries fromlisted in libraries.txt
+  - Select your port and Arduino board
+  - Connect the Arduino to your computer
+  - Upload a sketch
 
 <br>
 
-## Details :scroll:
+# Details :scroll:
 
-### User interface
-#### Solver
+
+
+## User interface
+### Solver
 ![main screen](/_for_readme/UI/main_screen.png)
 
 Creating a query manually is a time-consuming task that requires knowledge of SPARQL and ensuring accuracy. 
 Therefore, a query generator was prepared, allowing queries to be generated based on data copied from the Loldle website.
 
-##### Left column
-The left column of the generator allows for the generation of a new character's ontology by entering their name and copied data, or the entire knowledge base based on data in the files *champions.txt* and *champions_data.txt* in the */data* folder.
-
-##### Middle column
-The middle column is used to create containers with character data by pasting data copied from the website. 
-
-It is possible to paste data for multiple characters at once, for example, if the player wants to use the program as a hint after several incorrect guesses, or to paste data one by one as characters are guessed with the help of the program. Next, by clicking on the containers, the player must reflect the correctness of the guessed character's data. 
-
-The data is categorized into three types:
-- **Red** – Incorrect, none of the data in the square is correct.
-- **Yellow** – Partially correct, at least one element is correct, but some information is missing or incorrect.
-- **Green** – Correct, all data matches.
-
-
-- The order of the characters does not matter.
-- Repetitions do not affect the program's operation.
-- Once the correct data is marked in the column, you do not need to mark it again in other guesses.
-- Unwanted containers can be deleted by clicking the X icon.
-
-##### Right column
-The right column of the program is used to generate a query based on the provided data by pressing the "Generate SPARQL" button.
-
-----------------------------------
-
-### Project structure
+## Project structure
 The project directory tree looks like this:
 - :file_folder: UR-MatchstickEquations (project folder)
   - :page_facing_up: *github config*
@@ -179,6 +135,8 @@ The project directory tree looks like this:
     - :page_facing_up: *diagram.json file - wokwi scheme of the project*
     - :page_facing_up: *libraries.txt file - used libraries*
     - :page_facing_up: *sketch.ino file - code of the Arduino version*
+    - :page_facing_up: *real_circuit.png file - photo of real life circuit*
+    - :page_facing_up: *wokwi_circuit.png file - screen of wokwi circuit* 
   - :file_folder: Console
     - :page_facing_up: *console.c file - code of the console version*
     - :page_facing_up: *console.exe file - console version program*
