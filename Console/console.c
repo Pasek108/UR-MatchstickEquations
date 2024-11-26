@@ -23,9 +23,15 @@ bool takeMatch(int *n, int position);
 // if there is already match (bit not empty) - return false
 bool putMatch(int *n, int position);
 
+// copy one equation values to the other equation
 void saveEquation(int *saveTo, int *equation);
+
+// breaks correct equation in every possible way and returns one broken equation
 bool breakEquation(int *equation);
+
+// starts new game by randomly creating correct equation and breaking it until success
 int* startNewGame();
+
 
 int main() {
     srand(time(NULL));
