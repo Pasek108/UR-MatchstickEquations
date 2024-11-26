@@ -119,10 +119,25 @@ Download this repo and:
 
 ## User interface
 ### Console version
-![main screen](/_for_readme/UI/main_screen.png)
+![console version preview screenshot](/_for_readme/Console/console_preview.png)
 
-Creating a query manually is a time-consuming task that requires knowledge of SPARQL and ensuring accuracy. 
-Therefore, a query generator was prepared, allowing queries to be generated based on data copied from the Loldle website.
+The UI of the console version is represented using ASCII characters. The equation is divided into columns, and each column is further divided into segments. To move a matchstick, the user must input a column letter (A-D) and a segment number (1-7 for numbers or 1 for the operator).
+
+![console wrong answer](/_for_readme/Console/console_01_wrong.png)
+
+The game starts by displaying a printed equation and waits for user input. If the user makes a valid move that results in an incorrect answer or a non-existent number, the incorrect equation is displayed along with an error message.
+
+![console wrong answer](/_for_readme/Console/console_02_wrong.png)
+
+If the user tries to pick a matchstick from an empty segment, an error message is displayed.
+
+![console wrong answer](/_for_readme/Console/console_03_wrong.png)
+
+If the user tries to place a matchstick on an already-occupied segment, an error message is displayed.
+
+![console wrong answer](/_for_readme/Console/console_04_correct.png)
+
+If the user makes a valid move that results in the correct answer, the correct equation is displayed along with a win message. The user is then asked whether they want to play again. If they choose "No" (N), the program ends. If they choose "Yes" (Y), the console is cleared, and a new equation is generated.
 
 
 ## Matchstick representation
