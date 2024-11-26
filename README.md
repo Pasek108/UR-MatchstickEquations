@@ -197,10 +197,13 @@ Generating new equation starts with randomly creating correct equation, then it 
 ### Genearting correct equation
 First, all possible equations were generated using prolog. Then using that I noticed the pattern and came up with the formula.
 ```
+//   N1   OP    N2  =   R
+// (0-9) (+-) (0-9) = (0-9)
+
 R = random(0, 9)
 IS_PLUS = random(0, 1)
-N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R);
-N2 = (IS_PLUS) ? R - N1 : N1 - R;
+N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R)
+N2 = (IS_PLUS) ? R - N1 : N1 - R
 ```
 Check *Console/equation_generation_1.pl* file for more info.
 
@@ -258,24 +261,27 @@ can_become = [[
 
 Then, using brute force method I created function for printing all incorrect equations.
 ```
+//   a    operator    b   =   c
+// (0-9)    (+-)    (0-9) = (0-9)
+
 1. Transform by moving
   1.1. moving a
   1.2. moving b
   1.3. moving c
-2. Transform by taking from '+' opeartor
+2. Transform by taking from '+' operator
   2.1. and putting to a
   2.2. and putting to b
   2.3. and putting to c
 3. Transform by taking from a
-  3.1. and putting to '-' opeartor
+  3.1. and putting to '-' operator
   3.2. and putting to b
   3.3. and putting to c
 4. Transform by taking from b
-  4.1. and putting to '-' opeartor
+  4.1. and putting to '-' operator
   4.2. and putting to a
   4.3. and putting to c
 5. Transform by taking from c
-  5.1. and putting to '-' opeartor
+  5.1. and putting to '-' operator
   5.2. and putting to a
   5.3. and putting to b
 ```
