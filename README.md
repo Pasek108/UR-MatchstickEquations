@@ -32,7 +32,7 @@
 ## About
 The project involved creating an Arduino circuit on a breadboard and a program that uses the created circuit in a sensible way.
 
-This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Matrix display. The player must move one match to correct the equation.
+This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Dot Matrix display. The player must move one match to correct the equation.
 
 <br>
 
@@ -82,7 +82,7 @@ Programs:
 
 ## Elements
 - 1x Arduino Yún
-- 1x MAX7219 32×8 LED Matrix display
+- 1x MAX7219 32×8 LED Dot Matrix display
 - 1x Half-Size Breadboard
 - 6x Microswitch 6x6mm 2 pin
 - 1x Red LED 5mm
@@ -135,10 +135,12 @@ If the user tries to place a matchstick on an already-occupied segment, an error
 If the user makes a valid move that results in the correct answer, the correct equation is displayed along with a win message. The user is then asked whether they want to play again. If they choose "No" (N), the program ends. If they choose "Yes" (Y), the console is cleared, and a new equation is generated.
 
 ### Arduino version
-![console version preview screenshot](/_for_readme/Console/wokwi.gif)
+![console version preview screenshot](/_for_readme/Arduino/arduino_preview.png)
 Arduino version is similar to the console version. The equation is also divided into columns, and each column is divided into segments but game interaction and method of displaying equation is different. 
 
-To move a matchstick user must select column and segment using buttons. 
+Equation is represented using points on MAX7219 32×8 LED Dot Matrix display. The player is controlling the program using buttons. 
+
+Buttons under display are used to select column and matchstick. First push will select the column 
 
 ## Matchstick representation
 Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
