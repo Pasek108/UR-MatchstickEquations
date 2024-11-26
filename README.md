@@ -119,10 +119,25 @@ Download this repo and:
 
 ## User interface
 ### Console version
-![main screen](/_for_readme/UI/main_screen.png)
+![console version preview screenshot](/_for_readme/Console/console_preview.png)
 
-Creating a query manually is a time-consuming task that requires knowledge of SPARQL and ensuring accuracy. 
-Therefore, a query generator was prepared, allowing queries to be generated based on data copied from the Loldle website.
+The UI of the console version is represented using ASCII characters. The equation is divided into columns, and each column is further divided into segments. To move a matchstick, the user must input a column letter (A-D) and a segment number (1-7 for numbers or 1 for the operator).
+
+![console wrong answer](/_for_readme/Console/console_01_wrong.png)
+
+The game starts by displaying a printed equation and waits for user input. If the user makes a valid move that results in an incorrect answer or a non-existent number, the incorrect equation is displayed along with an error message.
+
+![console wrong answer](/_for_readme/Console/console_02_wrong.png)
+
+If the user tries to pick a matchstick from an empty segment, an error message is displayed.
+
+![console wrong answer](/_for_readme/Console/console_03_wrong.png)
+
+If the user tries to place a matchstick on an already-occupied segment, an error message is displayed.
+
+![console wrong answer](/_for_readme/Console/console_04_correct.png)
+
+If the user makes a valid move that results in the correct answer, the correct equation is displayed along with a win message. The user is then asked whether they want to play again. If they choose "No" (N), the program ends. If they choose "Yes" (Y), the console is cleared, and a new equation is generated.
 
 
 ## Matchstick representation
@@ -197,10 +212,13 @@ Generating new equation starts with randomly creating correct equation, then it 
 ### Genearting correct equation
 First, all possible equations were generated using prolog. Then using that I noticed the pattern and came up with the formula.
 ```
+//   N1   OP    N2  =   R
+// (0-9) (+-) (0-9) = (0-9)
+
 R = random(0, 9)
 IS_PLUS = random(0, 1)
-N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R);
-N2 = (IS_PLUS) ? R - N1 : N1 - R;
+N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R)
+N2 = (IS_PLUS) ? R - N1 : N1 - R
 ```
 Check *Console/equation_generation_1.pl* file for more info.
 
@@ -258,24 +276,27 @@ can_become = [[
 
 Then, using brute force method I created function for printing all incorrect equations.
 ```
+//   a    operator    b   =   c
+// (0-9)    (+-)    (0-9) = (0-9)
+
 1. Transform by moving
   1.1. moving a
   1.2. moving b
   1.3. moving c
-2. Transform by taking from '+' opeartor
+2. Transform by taking from '+' operator
   2.1. and putting to a
   2.2. and putting to b
   2.3. and putting to c
 3. Transform by taking from a
-  3.1. and putting to '-' opeartor
+  3.1. and putting to '-' operator
   3.2. and putting to b
   3.3. and putting to c
 4. Transform by taking from b
-  4.1. and putting to '-' opeartor
+  4.1. and putting to '-' operator
   4.2. and putting to a
   4.3. and putting to c
 5. Transform by taking from c
-  5.1. and putting to '-' opeartor
+  5.1. and putting to '-' operator
   5.2. and putting to a
   5.3. and putting to b
 ```
