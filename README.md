@@ -120,25 +120,25 @@ Download this repo and:
 ## User interface
 ### Console version
 ![console version preview screenshot](/_for_readme/Console/console_preview.png)
-
 The UI of the console version is represented using ASCII characters. The equation is divided into columns, and each column is further divided into segments. To move a matchstick, the user must input a column letter (A-D) and a segment number (1-7 for numbers or 1 for the operator).
 
 ![console wrong answer](/_for_readme/Console/console_01_wrong.png)
-
 The game starts by displaying a printed equation and waits for user input. If the user makes a valid move that results in an incorrect answer or a non-existent number, the incorrect equation is displayed along with an error message.
 
 ![console wrong answer](/_for_readme/Console/console_02_wrong.png)
-
 If the user tries to pick a matchstick from an empty segment, an error message is displayed.
 
 ![console wrong answer](/_for_readme/Console/console_03_wrong.png)
-
 If the user tries to place a matchstick on an already-occupied segment, an error message is displayed.
 
 ![console wrong answer](/_for_readme/Console/console_04_correct.png)
-
 If the user makes a valid move that results in the correct answer, the correct equation is displayed along with a win message. The user is then asked whether they want to play again. If they choose "No" (N), the program ends. If they choose "Yes" (Y), the console is cleared, and a new equation is generated.
 
+### Arduino version
+![console version preview screenshot](/_for_readme/Console/wokwi.gif)
+Arduino version is similar to the console version. The equation is also divided into columns, and each column is divided into segments but game interaction and method of displaying equation is different. 
+
+To move a matchstick user must select column and segment using buttons. 
 
 ## Matchstick representation
 Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
