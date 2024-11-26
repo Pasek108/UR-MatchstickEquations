@@ -192,7 +192,97 @@ Operator in the equation is represented in two ways:
 ```
 
 ## Equation generator
+Generating new equation starts with randomly creating correct equation, then it is breaked in every way and then one of incorrect equations is choosed randomly.
 
+### Genearting correct equation
+First, all possible equations were generated using prolog. Then using that I noticed the pattern and came up with the formula.
+```
+R = random(0, 9)
+IS_PLUS = random(0, 1)
+N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R);
+N2 = (IS_PLUS) ? R - N1 : N1 - R;
+```
+Check *Console/equation_generation_1.pl* file for more info.
+
+### Breaking correct equation
+The equation breaking process must satisfy these rules:
+- The column is a number or operator which we can transform
+- Transformation is:
+  - moving a match in the same column
+  - taking it from one column AND puting it in another
+- Match cannot be picked from empty segment
+- Match cannot be put in occupied segment
+- Match cannot be moved to the starting place
+- Broken equation must consist of the valid numbers and valid operator 
+
+After getting correct equations I manually created an array with all possible transformations of numbers.
+```
+can_become = [[
+    // by moving
+    [6, 9],     // 0
+    [],         // 1
+    [3],        // 2
+    [2, 5],     // 3
+    [],         // 4
+    [3],        // 5
+    [0, 9],     // 6
+    [],         // 7
+    [],         // 8
+    [0, 6]      // 9
+  ], [
+    // by taking
+    [],         // 0
+    [],         // 1
+    [],         // 2
+    [],         // 3
+    [],         // 4
+    [],         // 5
+    [5],        // 6
+    [1],        // 7
+    [0, 6, 9],  // 8
+    [3, 5]      // 9
+  ], [
+    // by putting
+    [8],        // 0
+    [7],        // 1
+    [],         // 2
+    [9],        // 3
+    [],         // 4
+    [6, 9],     // 5
+    [8],        // 6
+    [],         // 7
+    [],         // 8
+    [8]         // 9
+  ]]
+```
+
+Then, using brute force method I created function for printing all incorrect equations.
+```
+1. Transform by moving
+  1.1. moving a
+  1.2. moving b
+  1.3. moving c
+2. Transform by taking from '+' opeartor
+  2.1. and putting to a
+  2.2. and putting to b
+  2.3. and putting to c
+3. Transform by taking from a
+  3.1. and putting to '-' opeartor
+  3.2. and putting to b
+  3.3. and putting to c
+4. Transform by taking from b
+  4.1. and putting to '-' opeartor
+  4.2. and putting to a
+  4.3. and putting to c
+5. Transform by taking from c
+  5.1. and putting to '-' opeartor
+  5.2. and putting to a
+  5.3. and putting to b
+```
+
+After getting all incorrect equations I modified function to get correct equation and randomly select one of its incorrect equations.
+
+Check *Console/equation_generation_2.html* file for more info and run it for full list of broken equations.
 
 ## Project structure
 The project directory tree looks like this:
