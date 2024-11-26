@@ -12,34 +12,60 @@
 
 <br>
 
-## Table of Contents
-* [Overview :eye:](#overview-eye)
+# Table of Contents
+* [Overview :sparkles:](#overview-sparkles)
   * [About](#about)
-  * [Technologies](#technologies)
-  * [Technologies](#technologies)
   * [Features](#features)
+  * [Technologies](#technologies)
+  * [Elements](#elements)
   * [Setup](#setup)
-  * [How to use](#how-to-use)
 * [Details :scroll:](#details-scroll)
   * [User interface](#user-interface)
+  * [Matchstick representation](#matchstick-representation)
+  * [Equation generator](#equation-generator)
   * [Project structure](#project-structure)
 
 <br>
 
-## Overview :eye:
+# Overview :sparkles:
 
-### About
+## About
 The project involved creating an Arduino circuit on a breadboard and a program that uses the created circuit in a sensible way.
 
-This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Matrix. The player must move one match to correct the equation.
+This project creates solvable equation and presents it in the form of matches on the console or MAX7219 32×8 LED Matrix display. The player must move one match to correct the equation.
 
 <br>
 
 ![preview](/_for_readme/preview.png)
 
-----------------------------------
+## Features
+- Binary representation of numbers (0–9) and operators (+-) matches a seven-segment display, mimicking matchstick arrangements.
+- Simulation of matchstick movement by adding, removing, or repositioning segments.
+- Real-time feedback on valid and invalid moves.
+- Dynamic equation generator:
+  - Random values and modifications ensure replayability.
+  - Generating valid mathematical equation.
+  - Modifiying equation by manipulating matchsticks to create broken mathematical equations.
+  - Ensuring the equation has correct numbers and operators, which can be fixed with one move.
+- Arduino version:
+  - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
+  - Blinking animation effect for highlighting matchstick manipulation.
+  - Interactive control using buttons.
+  - Preventing removing a matchstick from an empty position or placing it in an occupied spot.
+- Console version:
+  - Visual representation of the equations on the console.
+  - Dividing the equation into columns (A-D) and segments (1-7).
+  - Control using input values (e.g., column and segment, like B1 D7).
 
-### Technologies
+<br>
+
+> [!NOTE]  
+> Room for improvements:
+> - Moving more than one matchstick
+> - Adding 2nd display and using 2-digit numbers
+> - Multiplication and divide operators (X and /)
+
+## Technologies
 - [Arduino Yún](https://docs.arduino.cc/retired/boards/arduino-yun/)
 
 Languages:
@@ -53,123 +79,122 @@ Programs:
 - [Arduino IDE](https://www.arduino.cc/en/software)
 - [Dev-C++](https://www.bloodshed.net)
 - [VSCode](https://code.visualstudio.com)
-  
-----------------------------------
 
-### Features
-- Binary representation of numbers (0–9) and operators (+-) are equivalent in a seven-segment display format, mimicking matchstick arrangements.
-- Simulation of matchstick movement by adding, removing, or repositioning segments.
-- Real-time feedback on valid and invalid moves.
-- Dynamic equation generator:
-  - Random values and modifications for ensuring replayability.
-  - Generating valid mathematical equation.
-  - Modifiying operands, operators, and results by manipulating matchsticks to create broken mathematical equations.
-  - Ensuring the equation is composed of correct numbers and operator and can be corrected with one move of a match.
-- Arduino version:
-  - Displaying equations dynamically on a MAX7219 32×8 LED Matrix display.
-  - Blinking animation effect for highlighting matchstick manipulation.
-  - Interactive control using buttons.
-  - Preventing of taking a matchstick from an empty position or placing one into an already-occupied spot.
-- Console version:
-  - Visual representation of the equations on the console.
-  - Dividing equation into columns (A-D) and segments (1-7).
-  - Control using input values (column and segment eg. B1 D7).
+## Elements
+- 1x Arduino Yún
+- 1x MAX7219 32×8 LED Matrix display
+- 1x Half-Size Breadboard
+- 6x Microswitch 6x6mm 2 pin
+- 1x Red LED 5mm
+- 1x Green LED 5mm
+- 2x 220 Ohm Resistor
+- 22x Jumper wires
 
-<br>
+## Setup
+Download this repo and:
 
-> [!NOTE]  
-> Room for improvements:
-> - Moving more than one matchstick
-> - Adding 2nd display and using 2-digit numbers
-> - Multiplication and divide operators (X and /)
+#### Console version
+- To run the program run console.exe file
+- To edit the program:
+  - Edit console.c file using any editor or IDE
+  - Compile and run using gcc or IDE
 
-----------------------------------
+#### Arduino version
+- To run and edit the program in WOKWI simualtor:
+  - Copy sketch.ino, diagram.json files to WOKWI
+  - Add libraries.txt file or libraries from this file to WOKWI
+  - Start simulation
 
-### Setup
-- Download this repo
-- Download [FluentEditor](https://www.cognitum.eu/semantics/fluenteditor/)
-- Start live server ([VSCode LiveServer Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), [Prepros](https://prepros.io/) etc.)
-- Open *Ontology.encnl* file
-- Update champions data (see [Updating data](#updating-data))
+- To run and edit the program on real Arduino:
+  - Recreate program circuit
+  - Open sketch.ino file in Arduino IDE
+  - Install libraries fromlisted in libraries.txt
+  - Select your port and Arduino board
+  - Connect the Arduino to your computer
+  - Upload a sketch
 
-----------------------------------
+<br> 
 
-### How to use
+# Details :scroll:
 
-#### Finding solution
-
-1. Input your guess/es on Loldle
-2. Copy your guessed champion/s data
-3. Paste it to "Guessed champions data" textbox
-4. Click "Add champions" button
-5. Mark your data as it is marked in Loldle (see images below)
-6. Click "Generate SPQRQL" button
-7. Copy generated query
-8. Paste copied query in Fluent Editor SPARQL tab (last one in the bottom)
-9. Execute query using "Execute" button
-10. Enter the name of the first character from the list into the Loldle game
-11. If guess wasn't correct, go back to step 2
-
-<br>
-<img alt="loldle guesses" src="/_for_readme/Details/loldle_guesses.png" width="500px">
-<img alt="marked champions" src="/_for_readme/Details/marked_champions.png" width="500px">
-
-For more data check [Middle column](#middle-column) section
-
-
-#### Updating data 
-
-Method 1:
-1. Copy new or updated champion data
-2. Add new champion name to *data/champions.txt* file
-3. Add new or replace champion data in *data/champions_data.txt* file
-4. Click "Generate all champions"
-5. Replace all data in *Ontology.encnl* file
-
-Method 2:
-1. Copy new or updated champion data
-3. Input champion name in "champion name" input
-4. Input champion data in "champion data" textbox
-5. Click "Generate champion"
-6. Add new or replace existing champion data in *Ontology.encnl* file
-7. Manually add new individuals of new champion if they not exist 
-
-<br>
-
-## Details :scroll:
-
-### User interface
-#### Solver
+## User interface
+### Console version
 ![main screen](/_for_readme/UI/main_screen.png)
 
 Creating a query manually is a time-consuming task that requires knowledge of SPARQL and ensuring accuracy. 
 Therefore, a query generator was prepared, allowing queries to be generated based on data copied from the Loldle website.
 
-##### Left column
-The left column of the generator allows for the generation of a new character's ontology by entering their name and copied data, or the entire knowledge base based on data in the files *champions.txt* and *champions_data.txt* in the */data* folder.
 
-##### Middle column
-The middle column is used to create containers with character data by pasting data copied from the website. 
+## Matchstick representation
+Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
+```                     
+   _______                                
+  |   1   |        This bits:            |       |
+6 |       | 2      7 6 5 4 3 2 1       6 |       | 2
+  |_______|        1 1 0 0 1 1 0         |_______|
+  |   7   |                                  7   |
+5 |       | 3      Are equivalent of             | 3
+  |_______|        number 4 because:             |
+      4
+```
 
-It is possible to paste data for multiple characters at once, for example, if the player wants to use the program as a hint after several incorrect guesses, or to paste data one by one as characters are guessed with the help of the program. Next, by clicking on the containers, the player must reflect the correctness of the guessed character's data. 
+A matchstick can be checked or added using AND and removed using OR operations with the appropriate bit, for example:
+```
+Checking if bit is set (match is in position):
+      7 6 5 4 3 2 1 
+      0 0 0 0 1 1 1  = 7 
+AND   0 0 0 0 0 1 0 
+      0 0 0 0 0 1 0  <- matchstick in the number 7 is at position 2
+                ^ 
+```
+```
+Setting bit to 0 (taking a match):
+      7 6 5 4 3 2 1 
+      1 0 1 1 0 1 1  = 2 
+AND   1 1 0 1 1 1 1 
+      1 0 0 1 0 1 1  <- matchstick removed from position 5 
+          ^      
+```
+```
+Setting bit to 1 (putting a match): 
+      7 6 5 4 3 2 1 
+      1 0 1 1 0 1 1  = 2 (without the matchstick in segment 5) 
+OR    0 0 0 0 1 0 0 
+      1 0 0 1 1 1 1  <- matchstick inserted at position 3 
+              ^
+```
 
-The data is categorized into three types:
-- **Red** – Incorrect, none of the data in the square is correct.
-- **Yellow** – Partially correct, at least one element is correct, but some information is missing or incorrect.
-- **Green** – Correct, all data matches.
+Operator in the equation is represented in two ways: 
+- For the console version it is an 8th bit of the number making them a sign-magnitude notation.  
+- For the Arduino version it is boolean variable so the numbers are equivalent of 7 bit numbers.
+```
+239, // -9 = 11101111 = 239    -----|
+255, // -8 = 11111111 = 255         |
+135, // -7 = 10000111 = 135         |
+253, // -6 = 11111101 = 253         |
+237, // -5 = 11101101 = 237         |--- binary equivalents of numbers  
+230, // -4 = 11100110 = 230         |--- only for console version 
+207, // -3 = 11001111 = 207         |
+219, // -2 = 11011011 = 219         |
+134, // -1 = 10000110 = 134         |
+191, // -0 = 10111111 = 191    -----|
+
+63,  //  0 = 00111111 = 63
+6,   //  1 = 00000110 = 6
+91,  //  2 = 01011011 = 91
+79,  //  3 = 01001111 = 79
+102, //  4 = 01100110 = 102
+109, //  5 = 01101101 = 109
+125, //  6 = 01111101 = 125
+7,   //  7 = 00000111 = 7
+127, //  8 = 01111111 = 127
+111, //  9 = 01101111 = 111
+```
+
+## Equation generator
 
 
-- The order of the characters does not matter.
-- Repetitions do not affect the program's operation.
-- Once the correct data is marked in the column, you do not need to mark it again in other guesses.
-- Unwanted containers can be deleted by clicking the X icon.
-
-##### Right column
-The right column of the program is used to generate a query based on the provided data by pressing the "Generate SPARQL" button.
-
-----------------------------------
-
-### Project structure
+## Project structure
 The project directory tree looks like this:
 - :file_folder: UR-MatchstickEquations (project folder)
   - :page_facing_up: *github config*
@@ -179,6 +204,8 @@ The project directory tree looks like this:
     - :page_facing_up: *diagram.json file - wokwi scheme of the project*
     - :page_facing_up: *libraries.txt file - used libraries*
     - :page_facing_up: *sketch.ino file - code of the Arduino version*
+    - :page_facing_up: *real_circuit.png file - photo of real life circuit*
+    - :page_facing_up: *wokwi_circuit.png file - screen of wokwi circuit* 
   - :file_folder: Console
     - :page_facing_up: *console.c file - code of the console version*
     - :page_facing_up: *console.exe file - console version program*
