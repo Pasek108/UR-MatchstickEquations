@@ -285,7 +285,6 @@ After getting all incorrect equations I modified function to get correct equatio
 Check *Console/equation_generation_2.html* file for more info and run it for full list of broken equations.
 
 ## Project structure
-The project directory tree looks like this:
 - :file_folder: UR-MatchstickEquations (project folder)
   - :page_facing_up: *github config*
   - :page_facing_up: *readme file*
