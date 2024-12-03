@@ -162,8 +162,6 @@ The Arduino version is a hardware implementation of the matchstick game, using a
 - **Red LED:** Lights up when the player's move results in an invalid equation.
 - **Green LED:** Lights up when the equation is corrected successfully, signaling the player has won the round.
 
-![arduino wokwi gif](/_for_readme/Arduino/wokwi_cropped.gif)
-
 #### Game Logic:
 - The game validates each move:
   - If the player doesn’t move a matchstick, the result will be incorrect.
@@ -192,6 +190,8 @@ The Arduino version is a hardware implementation of the matchstick game, using a
 - After submitting the equation:
   - The player can press the cancel button to replay the game.
   - The player can press the confirm button to start a new game.
+
+<img src="/_for_readme/Arduino/wokwi_cropped.gif" alt="arduino wokwi gif" width="100%">
 
 ## Matchstick representation
 Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
