@@ -108,10 +108,10 @@ Download this repo and:
 - To run and edit the program on real Arduino:
   - Recreate program circuit
   - Open sketch.ino file in Arduino IDE
-  - Install libraries fromlisted in libraries.txt
+  - Install libraries listed in libraries.txt
   - Select your port and Arduino board
   - Connect the Arduino to your computer
-  - Upload a sketch
+  - Upload a sketch to the Arduino
 
 <br> 
 
@@ -131,16 +131,67 @@ If the user tries to pick a matchstick from an empty segment, an error message i
 ![console wrong answer](/_for_readme/Console/console_03_wrong.png)
 If the user tries to place a matchstick on an already-occupied segment, an error message is displayed.
 
-![console wrong answer](/_for_readme/Console/console_04_correct.png)
+![console correct answer](/_for_readme/Console/console_04_correct.png)
 If the user makes a valid move that results in the correct answer, the correct equation is displayed along with a win message. The user is then asked whether they want to play again. If they choose "No" (N), the program ends. If they choose "Yes" (Y), the console is cleared, and a new equation is generated.
 
 ### Arduino version
-![console version preview screenshot](/_for_readme/Arduino/arduino_preview.png)
-Arduino version is similar to the console version. The equation is also divided into columns, and each column is divided into segments but game interaction and method of displaying equation is different. 
+![arduino version preview screenshot](/_for_readme/Arduino/arduino_preview.png)
+The Arduino version is a hardware implementation of the matchstick game, using a MAX7219 32×8 LED Dot Matrix display to visually represent the equation. The game is controlled through physical buttons, and game status is indicated by two LEDs (red and green).
 
-Equation is represented using points on MAX7219 32×8 LED Dot Matrix display. The player is controlling the program using buttons. 
+#### Equation Representation:
+- The equation is displayed on the LED matrix, with each digit, operator, and equals sign represented using illuminated points.
+- The equation is divided into "columns," with each column corresponding to a digit or operator.
 
-Buttons under display are used to select column and matchstick. First push will select the column 
+#### Buttons beneath the display allow players to interact:
+- **First Button Press:** Selects a column and highlights the first available matchstick or space in that column, depending on the game state.
+- **Subsequent Presses:** Cycles through matchsticks or free spaces within the selected column. The selected element blinks for visual feedback.
+
+#### Buttons on the left and right allow players to interact:
+- **Left button (Cancel):**
+  - If game state is ***column select*** it will generate new incorrect equation
+  - If game state is ***match select*** it will cancel match and column selection
+  - If game state is ***column select*** and ***match is picked*** it will put back the matchstick to the original place
+  - If game state is ***game over*** it will replay the same equation
+- **Right button (Confirm):**
+  - If game state is ***column select*** it will submit the equation
+  - If game state is ***match select*** it will pick selected match selection
+  - If game state is ***column select*** and ***match is picked*** it will submit the equation
+  - If game state is ***game over*** it will generate new equation
+
+#### Game Feedback:
+- **Red LED:** Lights up when the player's move results in an invalid equation.
+- **Green LED:** Lights up when the equation is corrected successfully, signaling the player has won the round.
+
+![arduino wokwi gif](/_for_readme/Arduino/wokwi_cropped.gif)
+
+#### Game Logic:
+- The game validates each move:
+  - If the player doesn’t move a matchstick, the result will be incorrect.
+  - If the player picks a matchstick but doesn’t place it, the result will be incorrect.
+  - If the player's move creates a non-existing number, the result will be incorrect.
+  - If the player moves a matchstick and forms an incorrect equation, the result will be incorrect.
+  - The game handles edge cases such as attempting to select an empty space or placing a matchstick in an already-occupied space.
+- If the game state is ***column select*** and ***no matchstick is picked***:
+  - The player must select a column from which to pick a matchstick.
+  - The player can generate a new equation using the cancel button.
+  - The player can submit the equation using the confirm button.
+- If the game state is ***match select*** and ***no matchstick is picked***:
+  - The player must select a matchstick to pick.
+  - The player can select another column to pick a matchstick.
+  - The player can cancel the selected column using the cancel button.
+  - The player can pick the selected matchstick using the confirm button.
+- If the game state is ***column select*** and ***a matchstick is picked***:
+  - The player must select a column where they will place the picked matchstick.
+  - The player can cancel the picked matchstick using the cancel button.
+  - The player can submit the equation using the confirm button.
+- If the game state is ***match select*** and ***a matchstick is picked***:
+  - The player must select an empty space to place the picked matchstick.
+  - The player can select another column to pick a matchstick.
+  - The player can cancel the selected column using the cancel button.
+  - The player can place the matchstick in the selected space using the confirm button.
+- After submitting the equation:
+  - The player can press the cancel button to replay the game.
+  - The player can press the confirm button to start a new game.
 
 ## Matchstick representation
 Each matchstick arrangement in a number can be represented as a binary number, where a matchstick is either present or absent in the corresponding position of a seven-segment digit.
