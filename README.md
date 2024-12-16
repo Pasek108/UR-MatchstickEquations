@@ -80,6 +80,11 @@ Programs:
 - [Dev-C++](https://www.bloodshed.net)
 - [VSCode](https://code.visualstudio.com)
 
+Libraries:
+-	[Bounce2](https://github.com/thomasfredericks/Bounce2)
+-	[MD_MAX72XX](https://majicdesigns.github.io/MD_MAX72XX/)
+
+
 ## Elements
 - 1x Arduino Yún
 - 1x MAX7219 32×8 LED Dot Matrix display
