@@ -268,7 +268,41 @@ Operator in the equation is represented in two ways:
 Generating new equation starts with randomly creating correct equation, then it is breaked in every way and then one of incorrect equations is choosed randomly.
 
 ### Genearting correct equation
-First, all possible equations were generated using prolog. Then using that I noticed the pattern and came up with the formula.
+First, all possible equations were generated using prolog. 
+```
+{{
+  { 0, 0, 0 }, // 0-0 = 0
+  { 1, 0, 1 }, // 1-1 = 0
+  { 2, 0, 2 }, // 2-2 = 0
+  { 3, 0, 3 }, // 3-3 = 0
+  { 4, 0, 4 }, // 4-4 = 0
+  { 5, 0, 5 }, // 5-5 = 0
+  { 6, 0, 6 }, // 6-6 = 0
+  { 7, 0, 7 }, // 7-7 = 0
+  { 8, 0, 8 }, // 8-8 = 0
+  { 9, 0, 9 }, // 9-9 = 0
+  { 0, 1, 0 }, // 0+0 = 0
+}, {
+  { 1, 0, 0 }, // 1-0 = 1
+  { 2, 0, 1 }, // 2-1 = 1
+  { 3, 0, 2 }, // 3-2 = 1
+  { 4, 0, 3 }, // 4-3 = 1
+  { 5, 0, 4 }, // 5-4 = 1
+  { 6, 0, 5 }, // 6-5 = 1
+  { 7, 0, 6 }, // 7-6 = 1
+  { 8, 0, 7 }, // 8-7 = 1
+  { 9, 0, 8 }, // 9-8 = 1
+  { 0, 1, 1 }, // 0+1 = 1
+  { 1, 1, 0 }, // 1+0 = 1
+},{
+  { 2, 0, 0 }, // 2-0 = 2
+  { 3, 0, 1 }, // 3-1 = 2
+  { 4, 0, 2 }, // 4-2 = 2
+  ...
+  and more
+```
+
+After inspecting it, I noticed a pattern and developed the formula
 ```
 //   N1   OP    N2  =   R
 // (0-9) (+-) (0-9) = (0-9)
@@ -278,6 +312,7 @@ IS_PLUS = random(0, 1)
 N1 = (IS_PLUS) ? random(0, R) : random(R, 9 - R)
 N2 = (IS_PLUS) ? R - N1 : N1 - R
 ```
+
 Check *Console/equation_generation_1.pl* file for more info.
 
 ### Breaking correct equation
@@ -359,7 +394,9 @@ Then, using brute force method I created function for printing all incorrect equ
   5.3. and putting to b
 ```
 
-After getting all incorrect equations I modified function to get correct equation and randomly select one of its incorrect equations.
+![all incorrect equations](/_for_readme/all_incorrect_equations.png)
+
+After generating all incorrect equations, I rewrote the function code in C++ and modified it to randomly select one incorrect equation for a given correct equation.
 
 Check *Console/equation_generation_2.html* file for more info and run it for full list of broken equations.
 
